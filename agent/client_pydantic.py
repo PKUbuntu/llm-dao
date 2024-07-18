@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     sys_prompt = "You are an AI assistant! You always generate json output for the user's prompt"
     
-    user_prompt = "Top 3 most famous places in Beijing."
+    user_prompt = "Top 3 most famous places in New York."
 
     code_result = client.query(sys_prompt=sys_prompt, user_prompt=user_prompt, temprature=2)
 

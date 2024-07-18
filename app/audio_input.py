@@ -1,4 +1,4 @@
-# entry
+# 使用 sphinx 来本地识别一句语音
 
 import speech_recognition as sr
 
@@ -16,11 +16,11 @@ with sr.Microphone() as source:
 try:
     # 使用 macOS 自带的语音识别器进行语音识别
     print("Ready to recognize...")
-    text = recognizer.recognize_google_cloud(audio)
-    # text = recognizer.recognize_whisper(audio, language='en-US')
+    text = recognizer.recognize_sphinx(audio, language='en-US')
     print("You said: " + text)
 except sr.UnknownValueError:
     print("Could not understand audio")
 except sr.RequestError as e:
     print("Recognition request failed; {0}".format(e))
-    
+
+
