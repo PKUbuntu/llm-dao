@@ -23,7 +23,8 @@ class LlamaClient:
 
     def query(self, sys_prompt, user_prompt, temprature=0.5, max_tokens=1024):
         completion = self.client.chat.completions.create(
-            model="llama3:latest",
+            model="llama3.1:latest",            
+            # model="llama3:latest",
             # model="phi3:latest",
             # model="qwen:4b",
             temperature=temprature,
