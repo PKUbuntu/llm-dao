@@ -1,5 +1,13 @@
 * llm playground
 
+主要探索三方面能力：
+1. 各种 client 的使用和能力比较
+2. LLM 的各种关键场景
+   - Tool call
+   - RAG
+   - Json output
+3. Streamlit 的使用，作为展示页面
+
 ** function call
    - pydantic
    - llama3

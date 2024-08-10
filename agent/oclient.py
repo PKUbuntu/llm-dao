@@ -4,7 +4,7 @@ OLLAMA_HOST="http://localhost:6060"
 
 client = Client(host=OLLAMA_HOST)
 
-response = client.chat(model='qwen:4b', messages=[
+response = client.chat(model='llama3.1:latest', messages=[
     {
         'role': 'user',
         'content': '你会干什么？',
@@ -16,7 +16,7 @@ print(response['message']['content'])
 
 
 stream = client.chat(
-    model='qwen:4b', 
+    model='llama3.1:latest', 
     messages=[
         {
             'role': 'user',

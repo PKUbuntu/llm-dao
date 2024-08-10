@@ -1,0 +1,10 @@
+
+* Agent
+
+尝试各种可用的 client 方式
+- client: 使用 openai
+- raw_client: 使用 llama_cpp 的 client
+- client_pydantic: openai + pydantic 用来生成结构化 json 输出
+- oclient: 使用 ollama 的 client
+    
+* langchain
