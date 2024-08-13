@@ -5,16 +5,16 @@ import streamlit as st
 import ollama
 client = ollama.Client()
 
-st.write("# Chat Demo")
+# 获取当前的所有 Models
+models = ollama.list()
 
-with st.chat_message("user"):
-    st.write("Hello 👋")
+model_options = []
+for m in models['models']:
+    model_options.append(m['model'])
 
-import numpy as np
+selected_model = st.sidebar.selectbox('选择一个模型', model_options)
 
-with st.chat_message("assistant"):
-    st.write("Hello human")
-    st.bar_chart(np.random.randn(30, 3))
+st.write("# Chat Demo: " + str(selected_model))
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -36,7 +36,7 @@ if prompt := st.chat_input("What is up?"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
     # st.code(st.session_state.messages, "javascript")
-    response = client.chat(model='llama3.1:latest',
+    response = client.chat(model=str(selected_model),
                            messages=st.session_state.messages,
                            stream=True)
 
