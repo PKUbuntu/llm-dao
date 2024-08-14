@@ -14,5 +14,14 @@
 
    see `client_pydantic.py` for example
 
+** rag
+- 构建 chromadb: 注意 protobuf 的版本问题
+  #+begin_src shell
+    # active venv
+    export  PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+    python app/chromadb_create.py
+  #+end_src
+
+
 ** tool call =TODO=
    
