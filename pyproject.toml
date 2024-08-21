@@ -16,6 +16,7 @@ llama-index-core = "^0.10.64"
 llama-index-embeddings-ollama = "^0.1.3"
 chromadb = "^0.5.5"
 llama-index-vector-stores-chroma = "^0.1.10"
+streamlit-audiorec = "^0.1.3"
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.29.5"
 

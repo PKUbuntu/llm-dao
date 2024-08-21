@@ -22,6 +22,15 @@
     python app/chromadb_create.py
   #+end_src
 
+** voice rag
+- poetry 安装 funasr 等会出现问题，直接使用
+  #+begin_src shell
+    pip install funasr
+    pip install torch
+    pip install torchaudio
+    pip install modelscope
+    pip install huggingface
+  #+end_src
 
 ** tool call =TODO=
    
