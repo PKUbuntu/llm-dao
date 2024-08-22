@@ -1,16 +1,7 @@
 # 使用 streamlit 的默认的 chat message 组件
 
 import streamlit as st
-
-import ollama
-client = ollama.Client()
-
-# 获取当前的所有 Models
-models = ollama.list()
-
-model_options = []
-for m in models['models']:
-    model_options.append(m['model'])
+from agent.ollama_client import client, model_options
 
 selected_model = st.sidebar.selectbox('选择一个模型', model_options)
 

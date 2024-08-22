@@ -9,14 +9,8 @@ from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core import StorageContext, VectorStoreIndex, Settings
 
-import ollama
-client = ollama.Client()
+from agent.ollama_client import model_options
 
-models = ollama.list()
-
-model_options = []
-for m in models['models']:
-    model_options.append(m['model'])
 
 # initialize client
 db = chromadb.PersistentClient(path="./chroma_db")

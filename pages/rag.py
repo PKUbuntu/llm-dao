@@ -7,14 +7,7 @@ from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, ServiceContext, Settings
 
-import ollama
-client = ollama.Client()
-
-models = ollama.list()
-
-model_options = []
-for m in models['models']:
-    model_options.append(m['model'])
+from agent.ollama_client import model_options
 
 # 获取 data 目录下的文件名
 import os
