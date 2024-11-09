@@ -12,7 +12,7 @@ llama_host = "http://" +  os.getenv('OLLAMA_HOST', 'localhost:11434')
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 
-Settings.llm = Ollama(model='qwen2:1.5b', base_url=llama_host, request_timeout=360.0)
+Settings.llm = Ollama(model='llama3.1', base_url=llama_host, request_timeout=360.0)
 Settings.embed_model = OllamaEmbedding(model_name="nomic-embed-text:latest", base_url=llama_host)
 
 
