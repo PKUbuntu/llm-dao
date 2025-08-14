@@ -1,3 +1,5 @@
+# TODO: Ollama client 没有正常工作过，暂时不知道问题在哪儿
+
 import ollama
 import os
 
@@ -12,4 +14,4 @@ model_options = []
 for m in models['models']:
     model_options.append(m['model'])
 
-    
+print(model_options)    

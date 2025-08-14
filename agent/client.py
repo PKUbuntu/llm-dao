@@ -10,7 +10,8 @@ class LlamaClient:
 
     def query(self, sys_prompt, user_prompt, temprature=0.5, max_tokens=1024):
         completion = self.client.chat.completions.create(
-            model="llama3",
+            model="gemma3:latest",
+            # model="llama3",
             # model="phi3:latest",
             # model="qwen:4b",
             temperature=temprature,
@@ -23,30 +24,30 @@ class LlamaClient:
             ],
 
             response_format={
-                "type": "json_object",
-                "schema": {
-                    "type": "object",
-                    "$defs": { 
-                        "A": {
-                            "type": "object",
-                            "properties": {
-                                "place_name": {"type": "string", "description": "eg: 长城(Great Wall)"},
-                                "place_addr": {"type": "string", "description": "Address of the place"},
-                                "telephone": {"type": "string", "description": "telephone number, only need 1"}
-                            },
-                            "required": ["place_name", "place_addr"],
-                        }
-                    },
-
-                    "properties": {
-                        "rules": {
-                            "items": {
-                                "$ref": "#/$defs/A"
-                            },
-                            "type": "array"
-                        }
-                    },
-                    "required": ["rules"]
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "places_schema",
+                    "strict": True,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "rules": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "place_name": {"type": "string"},
+                                        "place_addr": {"type": "string"},
+                                        "telephone": {"type": "string"}
+                                    },
+                                    "required": ["place_name", "place_addr"],
+                                    "additionalProperties": False
+                                }
+                            }
+                        },
+                        "required": ["rules"],
+                        "additionalProperties": False
+                    }
                 }
             },
         )
@@ -56,7 +57,8 @@ class LlamaClient:
 if __name__ == "__main__":
 
     client = LlamaClient(
-        base_url="http://localhost:6060/v1",        
+        # base_url="http://localhost:6060/v1",        
+        base_url="http://localhost:11434/v1",        
     )
 
     sys_prompt = "You are an AI assistant! You always generate json output for the user's prompt"
