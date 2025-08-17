@@ -2,9 +2,8 @@
 ## Run the snippet "uv run agent/client_mcp.py"
 
 import asyncio
+from mcp.types import ListToolsResult
 from mcp.client.session import ClientSession
-from mcp.shared.message import SessionMessage
-from mcp.types import JSONRPCMessage, JSONRPCRequest
 from mcp.client.stdio import stdio_client, StdioServerParameters
 
 # Import the OpenAI client instead of ollama
@@ -22,7 +21,7 @@ client = OpenAI(
 )
 
 
-def build_tools(tools):
+def build_tools(tools: ListToolsResult) -> list:
     openai_tools = []
     if tools.tools:
         for tool in tools.tools:
@@ -42,7 +41,7 @@ async def main():
     async with stdio_client(StdioServerParameters(
             command="uv", 
             # args=["run", "mcp", "dev", "./mcp/echo.py"]
-            args=["run", "mcp", "run", "./mcp/echo.py"]
+            args=["run", "mcp", "run", "./tools/echo.py"]
     )) as (read, write):
         async with ClientSession(read, write) as session:
             await session.initialize()
