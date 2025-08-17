@@ -18,7 +18,10 @@ server_params = StdioServerParameters(
 # You can choose other models like "deepseek-coder" if needed
 
 llm = ChatDeepSeek(model="deepseek-chat") # 在命令行设置对应的API-Key
-llm_ollama = ChatOllama(model="qwen3:latest")
+llm_ollama = ChatOllama(model="qwen3:latest",    
+                        base_url="http://127.0.0.1:11434",
+                        temperature=0.7               
+                        )
 
 async def run_server():
     async with stdio_client(server_params) as (read, write):
@@ -31,8 +34,8 @@ async def run_server():
             print("🔧 Available tools:", tools)
 
             # Create and run the agent
-            agent = create_react_agent(model=llm, tools=tools)
-            # agent = create_react_agent(model=llm_ollama, tools=tools)
+            # agent = create_react_agent(model=llm, tools=tools)
+            agent = create_react_agent(model=llm_ollama, tools=tools)
             agent_response = await agent.ainvoke({"messages": "please echo with me: Hola!"})
             
             print("💬 Agent Response:", agent_response['messages'])
