@@ -1,5 +1,4 @@
 # Use langchain to combine playwright
-
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 from langchain_deepseek import ChatDeepSeek 
@@ -7,6 +6,7 @@ from langchain_ollama import ChatOllama
 
 from langchain_mcp_adapters.tools import load_mcp_tools
 from langgraph.prebuilt import create_react_agent
+
 import asyncio
 
 server_params = StdioServerParameters(
@@ -34,6 +34,11 @@ async def run_server():
             agent = create_react_agent(model=llm, tools=tools)
             # agent = create_react_agent(model=llm_ollama, tools=tools)
             agent_response = await agent.ainvoke({"messages": "please navigate to https://www.baidu.com"})
+            
+            print("💬 Agent Response:", agent_response['messages'])
+            print("✅ Tool Response:", agent_response['messages'][2].content);
+
+            agent_response = await agent.ainvoke({"messages": "在搜索框输入 上海天气，点击[百度一下]"})
             
             print("💬 Agent Response:", agent_response['messages'])
             print("✅ Tool Response:", agent_response['messages'][2].content);
